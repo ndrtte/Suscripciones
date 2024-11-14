@@ -1,6 +1,10 @@
 package hn.unah.poo.suscripcion.demo1.modelos;
 
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,13 +19,15 @@ import lombok.Setter;
 @Table(name="clientes")
 public class Cliente {
     
+    @Id
     private String dni;
 
     private String nombre;
 
     private String apellido;
 
-    private String fechaIngreso;
+    @Column(name="fechaingreso")
+    private LocalDate fechaIngreso;
 
     private String correo;
 
