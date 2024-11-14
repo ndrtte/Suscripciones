@@ -40,6 +40,12 @@ public class ClienteServicio {
         return "El cliente ha sido creado";
     }
 
-    
+    public String eliminarClientePorId(String id){
+        if(!this.clienteRepositorio.existsById(id)){
+            return "No existe el cliente";   
+        }
+        clienteRepositorio.deleteById(id);
+        return "El cliente ha sido eliminado exitosamente";
+    }
 
 }
