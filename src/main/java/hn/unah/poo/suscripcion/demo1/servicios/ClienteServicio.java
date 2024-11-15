@@ -49,7 +49,7 @@ public class ClienteServicio {
     }
 
     public String actualizarCliente (String dni, ClienteDTO clienteDTO){
-        if (!this.clienteRepositorio.existsById(dni)){
+        if (!this.clienteRepositorio.existsById(clienteDTO.getDni())){
             return "No existe el cliente";
         }
         Cliente clienteActualizar = this.modelMapper.map(clienteDTO,Cliente.class);
