@@ -24,4 +24,6 @@ public class ClienteDTO {
     private String correo;
 
     private String telefono;
+    
+    private DireccionesDTO direccionesDTO;
 }

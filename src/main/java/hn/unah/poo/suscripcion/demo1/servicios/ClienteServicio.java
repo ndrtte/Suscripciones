@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import hn.unah.poo.suscripcion.demo1.ModelMapper.ModelMapperSingleton;
 import hn.unah.poo.suscripcion.demo1.dto.ClienteDTO;
 import hn.unah.poo.suscripcion.demo1.modelos.Cliente;
+import hn.unah.poo.suscripcion.demo1.modelos.Direcciones;
 import hn.unah.poo.suscripcion.demo1.repositorios.ClienteRepositorio;
+import hn.unah.poo.suscripcion.demo1.dto.DireccionesDTO;
 
 @Service
 public class ClienteServicio {
@@ -27,6 +29,11 @@ public class ClienteServicio {
     public Optional <ClienteDTO> obtenerPorDNI(String dni){
        Optional <Cliente> cliente = clienteRepositorio.findById(dni);
        ClienteDTO clienteDTO = this.modelMapper.map(cliente, ClienteDTO.class);
+
+       Direcciones direcciones = cliente.get().getDireccion();
+       DireccionesDTO direccionesDTO = this.modelMapper.map(direcciones, DireccionesDTO.class);
+       clienteDTO.setDireccionesDTO(direccionesDTO);
+       
         return Optional.ofNullable(clienteDTO);
     }
 
