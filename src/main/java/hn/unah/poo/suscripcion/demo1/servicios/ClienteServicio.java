@@ -1,6 +1,7 @@
 package hn.unah.poo.suscripcion.demo1.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,10 @@ public class ClienteServicio {
         return clienteRepositorio.findAll();
     }
 
-    public ClienteDTO obtenerPorDNI(String dni){
-        Cliente cliente = clienteRepositorio.findById(dni).get();
-        ClienteDTO clienteDTO = this.modelMapper.map(cliente, ClienteDTO.class);
-        
-        return clienteDTO;
+    public Optional <ClienteDTO> obtenerPorDNI(String dni){
+       Optional <Cliente> cliente = clienteRepositorio.findById(dni);
+       ClienteDTO clienteDTO = this.modelMapper.map(cliente, ClienteDTO.class);
+        return Optional.ofNullable(clienteDTO);
     }
 
     public String crearCliente(ClienteDTO nvoCliente){
@@ -46,6 +46,16 @@ public class ClienteServicio {
         }
         clienteRepositorio.deleteById(id);
         return "El cliente ha sido eliminado exitosamente";
+    }
+
+    public String actualizarCliente (String dni, ClienteDTO clienteDTO){
+        if (!this.clienteRepositorio.existsById(dni)){
+            return "No existe el cliente";
+        }
+        Cliente clienteActualizar = this.modelMapper.map(clienteDTO,Cliente.class);
+        clienteRepositorio.save(clienteActualizar);
+        return "EL cliente "+clienteDTO.getDni()+"  ha sido actualizado.";
+
     }
 
 }
