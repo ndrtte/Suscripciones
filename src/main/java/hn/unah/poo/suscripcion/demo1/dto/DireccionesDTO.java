@@ -14,5 +14,5 @@ public class DireccionesDTO {
     
     private String colonia;
 
-    private ClienteDTO clienteDTO;
+    private ClienteDTO cliente;
 }
