@@ -13,6 +13,4 @@ public class DireccionesDTO {
     private String ciudad;
     
     private String colonia;
-
-    private ClienteDTO cliente;
 }
