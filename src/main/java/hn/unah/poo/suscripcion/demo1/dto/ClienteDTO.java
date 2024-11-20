@@ -1,6 +1,7 @@
 package hn.unah.poo.suscripcion.demo1.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,4 +27,7 @@ public class ClienteDTO {
     private String telefono;
     
     private DireccionesDTO direccion;
+
+    private List<MembresiasDTO> membresias;
+
 }
