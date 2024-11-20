@@ -35,8 +35,7 @@ public class Cliente {
     private String correo;
 
     private String telefono;
-
-    @JsonIgnore
+    
     @OneToOne(mappedBy = "cliente")
     private Direcciones direccion;
 
