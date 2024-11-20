@@ -25,5 +25,5 @@ public class ClienteDTO {
 
     private String telefono;
     
-    private DireccionesDTO direccionesDTO;
+    private DireccionesDTO direccion;
 }

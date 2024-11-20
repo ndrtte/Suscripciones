@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.poo.suscripcion.demo1.dto.ClienteDTO;
-import hn.unah.poo.suscripcion.demo1.modelos.Cliente;
 import hn.unah.poo.suscripcion.demo1.servicios.ClienteServicio;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,7 +26,7 @@ public class ClienteController {
     private ClienteServicio clienteServicio;
 
     @GetMapping("/obtener")
-    public List<Cliente> obtenerTodos(){
+    public List<ClienteDTO> obtenerTodos(){
         return this.clienteServicio.obtenerTodoss();
     }
 

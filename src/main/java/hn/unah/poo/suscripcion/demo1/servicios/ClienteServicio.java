@@ -1,5 +1,6 @@
 package hn.unah.poo.suscripcion.demo1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,18 +23,31 @@ public class ClienteServicio {
 
     private ModelMapper modelMapper = ModelMapperSingleton.getInstancia();
 
-    public List <Cliente> obtenerTodoss(){
-        return clienteRepositorio.findAll();
+    public List <ClienteDTO> obtenerTodoss(){
+       List<Cliente> listaClientes = clienteRepositorio.findAll();
+       List<ClienteDTO> listaClienteDTO = new ArrayList<>();
+       ClienteDTO clienteDTO;
+       for(Cliente clienteBD : listaClientes){
+            clienteDTO = modelMapper.map(clienteBD, ClienteDTO.class);
+            listaClienteDTO.add(clienteDTO);
+       }
+       return listaClienteDTO;
     }
 
     public Optional <ClienteDTO> obtenerPorDNI(String dni){
        Optional <Cliente> cliente = clienteRepositorio.findById(dni);
        ClienteDTO clienteDTO = this.modelMapper.map(cliente, ClienteDTO.class);
 
-       Direcciones direcciones = cliente.get().getDireccion();
-       DireccionesDTO direccionesDTO = this.modelMapper.map(direcciones, DireccionesDTO.class);
-       clienteDTO.setDireccionesDTO(direccionesDTO);
-       
+        if(clienteDTO!=null){
+            if(clienteDTO.getDireccion() == null){
+                clienteDTO.setDireccion(null);
+            }
+            else{
+                Direcciones direcciones = cliente.get().getDireccion();
+                DireccionesDTO direccionesDTO = this.modelMapper.map(direcciones, DireccionesDTO.class);
+                clienteDTO.setDireccion(direccionesDTO);
+            }
+        }
         return Optional.ofNullable(clienteDTO);
     }
 
