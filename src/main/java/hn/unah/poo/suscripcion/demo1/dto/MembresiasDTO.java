@@ -1,6 +1,5 @@
 package hn.unah.poo.suscripcion.demo1.dto;
 
-import hn.unah.poo.suscripcion.demo1.modelos.Cliente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +17,6 @@ public class MembresiasDTO {
     private String descripcion;
 
     private char tipo;
-
+    
     private ClienteDTO cliente;
 }
